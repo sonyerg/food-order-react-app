@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { fetchAvailableProducts } from "../http";
+import { fetchAvailableMeals } from "../http";
+import MealItem from "./MealItem";
 
-export default function Products() {
+export default function Meals() {
   const [loadedMeals, setLoadedMeals] = useState([]);
   //   const [error, setError] = useState(false);
   useEffect(() => {
     async function fetchMeals() {
-      const meals = await fetchAvailableProducts();
+      const meals = await fetchAvailableMeals();
       setLoadedMeals(meals);
     }
 
@@ -18,14 +19,10 @@ export default function Products() {
   //   }
 
   return (
-    <div>
-      <ul id="meals">
-        {loadedMeals.map((meal) => (
-          <li key={meal.id}>
-            <p>{meal.name}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul id="meals">
+      {loadedMeals.map((meal) => (
+        <MealItem key={meal.id} meal={meal} />
+      ))}
+    </ul>
   );
 }
