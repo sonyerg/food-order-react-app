@@ -8,3 +8,5 @@ export async function fetchAvailableMeals() {
 
   return resData;
 }
+
+export async function addMealToCart(meal) {}
