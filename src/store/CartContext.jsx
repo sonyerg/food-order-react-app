@@ -1,7 +1,9 @@
 import { createContext, useReducer } from "react";
 
 const CartContext = createContext({
-  items: [],
+  items: [
+    //item: {id, quantity, ...}
+  ],
   addItem: (item) => {},
   removeItem: (id) => {},
 });
@@ -39,20 +41,20 @@ function cartReducer(state, action) {
 
   if (action.type === "REMOVE_ITEM") {
     const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.id //just need the id not the item
+      (item) => item.id === action.id // just need the id not the item
     );
 
     const existingCartItem = state.items[existingCartItemIndex];
     const updatedItems = [...state.items];
 
     if (existingCartItem.quantity === 1) {
-      updatedItems.splice(existingCartItemIndex, 1);
+      updatedItems.splice(existingCartItemIndex, 1); // splice(index, 'how many remove?')
     } else {
       const updatedItem = {
-        ...existingCartItem, //includes id of the selected item
+        ...existingCartItem, // spread old item state
         quantity: existingCartItem.quantity - 1,
       };
-      updatedItems[existingCartItemIndex] = updatedItem; //update selected item
+      updatedItems[existingCartItemIndex] = updatedItem; // update selected item
     }
 
     return {
