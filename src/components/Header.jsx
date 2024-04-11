@@ -12,10 +12,6 @@ export default function Header() {
     return totalNumberOfItems + item.quantity;
   }, 0);
 
-  function handleShowCart() {
-    showCart();
-  }
-
   return (
     <header id="main-header">
       <div id="title">
@@ -23,7 +19,7 @@ export default function Header() {
         <h1>React Food</h1>
       </div>
       <nav>
-        <Button textOnly onClick={handleShowCart}>
+        <Button textOnly onClick={showCart}>
           Cart ({totalCartItems})
         </Button>
       </nav>
